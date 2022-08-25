@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -8,6 +9,11 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         List<String> list = new ArrayList<>();
+        list.add("one");
+        list.add("two");
+        list.add("three");
+
+        Iterator<String> listIter = list.iterator(); //создаем итератор
 
         while (true) {
             System.out.println("""
@@ -45,10 +51,18 @@ public class Main {
                         int num = Integer.parseInt(del) - 1; //переводим в число
                         String removedStrNum = list.remove(num); //удаляем
                         removedStr(removedStrNum); //покупка удалена метод
-                    } else if (!tryParseInt(del)) {
+                    } else if (!tryParseInt(del)){
                         String removedStrName = list.remove(list.indexOf(del));
                         removedStr(removedStrName); //покупка удалена метод
                     }
+
+//                    while (listIter.hasNext()) { //до тех пор, пока в списке есть элементы
+//                        String removedStrName = listIter.next(); //получаем следующий элемент
+//                        if (removedStrName.equals(del)) { //прверка на совпадение
+//                            listIter.remove(); //удаляем
+//                            removedStr(removedStrName); //покупка удалена метод
+//                        }
+//                    }
 
                     shopList(list); //список покупок метод
                     separator(); //разделитель метод
@@ -75,7 +89,7 @@ public class Main {
 
     public static void shopList(List<String> list) {
         for (int i = 0; i < list.size(); i++) {
-            System.out.println((list.indexOf(list.get(i)) + 1)
+            System.out.println((i + 1)
                     + ". " + list.get(i));
         }
     }
